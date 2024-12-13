@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insaan Haathi Jaisa?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+        .question-container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .question {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .question img {
+            max-width: 90%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .buttons .yes {
+            background-color: #4caf50;
+            color: white;
+        }
+        .buttons .yes:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .buttons .no {
+            background-color: #f44336;
+            color: white;
+        }
+        .buttons .no:hover {
+            background-color: #e53935;
+            transform: scale(1.1);
+        }
+        #new-image {
+            display: none;
+            border-radius: 8px;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="question-container" id="question-container">
+        <div class="question">
+            <img src="mks.jpg" alt="Question Image">
+            photo mein dikh rahi ladki kya yeah haathi jaisi dikhti hai?
+        </div>
+        <div class="buttons">
+            <button class="yes" onclick="respond('yes')">Haan</button>
+            <button class="no" id="no-button">Nahi</button>
+        </div>
+    </div>
+    <img id="new-image" src="elephant copy.jpg" alt="New Image">
+
+    <script>
+        const noButton = document.getElementById('no-button');
+        noButton.addEventListener('mousemove', () => {
+            const yesButton = document.querySelector('.yes');
+            const noButtonRect = noButton.getBoundingClientRect();
+            const yesButtonRect = yesButton.getBoundingClientRect();
+            const offset = 10;
+
+            if (noButtonRect.left < yesButtonRect.right + offset) {
+                noButton.style.position = 'absolute';
+                noButton.style.left = `${yesButtonRect.right + offset}px`;
+            }
+        });
+
+        function respond(answer) {
+            if (answer === 'yes') {
+                const questionContainer = document.getElementById('question-container');
+                const newImage = document.getElementById('new-image');
+                questionContainer.style.display = 'none';
+                newImage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
